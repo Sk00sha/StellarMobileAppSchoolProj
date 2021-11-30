@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/register_Fragment">
+
+    <fragment
+        android:id="@+id/register_Fragment"
+        android:name="com.example.timakrework.Fragmenty.MainPage.MainPage_Fragment"
+        android:label="fragment_register_"
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/action_register_Fragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_register_Fragment_to_loggedIn"
+            app:destination="@id/loggedIn" />
+        <action
+            android:id="@+id/action_register_Fragment_to_makeTransaction"
+            app:destination="@id/makeTransaction" />
+        <action
+            android:id="@+id/action_register_Fragment_to_contacts"
+            app:destination="@id/contacts" />
+        <action
+            android:id="@+id/action_register_Fragment_to_transaction_history"
+            app:destination="@id/transaction_history" />
+        <action
+            android:id="@+id/action_register_Fragment_to_balanceFragment"
+            app:destination="@id/balanceFragment" />
+        <action
+            android:id="@+id/action_register_Fragment_to_accounts_Fragment"
+            app:destination="@id/accounts_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.timakrework.Fragmenty.Register.Register"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_loginFragment_to_accounts_Fragment"
+            app:destination="@id/accounts_Fragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_register_Fragment"
+            app:destination="@id/register_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loggedIn"
+        android:name="com.example.timakrework.Fragmenty.Logged.LoggedIn"
+        android:label="fragment_logged_in"
+        tools:layout="@layout/fragment_logged_in" >
+        <action
+            android:id="@+id/action_loggedIn_to_register_Fragment"
+            app:destination="@id/register_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/makeTransaction"
+        android:name="com.example.timakrework.Fragmenty.MakeTransaction.MakeTransaction"
+        android:label="fragment_make_transaction"
+        tools:layout="@layout/fragment_make_transaction" >
+        <action
+            android:id="@+id/action_makeTransaction_to_transaction_history"
+            app:destination="@id/transaction_history" />
+        <action
+            android:id="@+id/action_makeTransaction_to_register_Fragment"
+            app:destination="@id/register_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contacts"
+        android:name="com.example.timakrework.Fragmenty.Contacts.Contacts"
+        android:label="fragment_contacts"
+        tools:layout="@layout/fragment_contacts" >
+        <action
+            android:id="@+id/action_contacts_to_add_contact"
+            app:destination="@id/add_contact" />
+        <action
+            android:id="@+id/action_contacts_to_register_Fragment"
+            app:destination="@id/register_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/add_contact"
+        android:name="com.example.timakrework.Fragmenty.Add_Contact.add_contact"
+        android:label="fragment_add_contact"
+        tools:layout="@layout/fragment_add_contact" >
+        <action
+            android:id="@+id/action_add_contact_to_register_Fragment"
+            app:destination="@id/register_Fragment" />
+        <action
+            android:id="@+id/action_add_contact_to_register_Fragment2"
+            app:destination="@id/register_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transaction_history"
+        android:name="com.example.timakrework.Fragmenty.Transaction_history.Transaction_history"
+        android:label="fragment_transaction_history"
+        tools:layout="@layout/fragment_transaction_history" >
+        <action
+            android:id="@+id/action_transaction_history_to_register_Fragment"
+            app:destination="@id/register_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/balanceFragment"
+        android:name="com.example.timakrework.Fragmenty.Balance.BalanceFragment"
+        android:label="fragment_balance"
+        tools:layout="@layout/fragment_balance" />
+    <fragment
+        android:id="@+id/accounts_Fragment"
+        android:name="com.example.timakrework.Fragmenty.Accounts.Accounts_Fragment"
+        android:label="fragment_accounts_"
+        tools:layout="@layout/fragment_accounts_" >
+        <action
+            android:id="@+id/action_accounts_Fragment_to_register_Fragment"
+            app:destination="@id/register_Fragment" />
+    </fragment>
+</navigation>

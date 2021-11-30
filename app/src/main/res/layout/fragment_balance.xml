@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Fragmenty.Balance.BalanceFragment">
+
+        <Button
+            android:id="@+id/real_db_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get real db balance"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.545"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.636" />
+
+        <TextView
+            android:id="@+id/balance_data"
+            android:layout_width="17dp"
+            android:layout_height="22dp"
+            android:text="-::-"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.092"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.368" />
+
+        <Spinner
+            android:id="@+id/id_spinner"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.118" />
+
+        <Button
+            android:id="@+id/get_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Balance"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balance:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.366" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
