@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -38,18 +39,25 @@ class LoggedIn : Fragment() {
         mUserViewModel= ViewModelProvider(this).get(ViewModel::class.java)
 
         binding.addAccButton.setOnClickListener {
-            val secret_seed=binding.secretSeedInfo.text.toString()
-            val pin=binding.PinInfo.text.toString()
-            val data=StellarClass.add_existing_account(secret_seed)
-            val hash = encryptor.toMD5(pin) //zahashujeme nas pin
-            println("hash "+hash)
-            val encrypt = encryptor.encrypt(data.get(1),hash) //encryptime nas seed
-            val decrypt = encryptor.decryptWithAES(hash,encrypt) //decryptime nas pin
-            println("encrypt "+encrypt)
-            println("ENCRYPT"+encrypt.toString())
-            println("decrypt "+decrypt)
-            mUserViewModel.addUser(User(0,data.get(0),encrypt.toString(),data.get(2)))
+            val secret_seed = binding.secretSeedInfo.text.toString()
+            val pin = binding.PinInfo.text.toString()
+            if (!binding.PinInfo.text.toString().isEmpty() && !binding.secretSeedInfo.text.toString().isEmpty()) {
+                val data = StellarClass.add_existing_account(secret_seed)
+                val hash = encryptor.toMD5(pin) //zahashujeme nas pin
+                println("hash " + hash)
+                val encrypt = encryptor.encrypt(data.get(1), hash) //encryptime nas seed
+                val decrypt = encryptor.decryptWithAES(hash, encrypt) //decryptime nas pin
+                println("encrypt " + encrypt)
+                println("ENCRYPT" + encrypt.toString())
+                println("decrypt " + decrypt)
+                mUserViewModel.addUser(User(0, data.get(0), encrypt.toString(), data.get(2)))
+                findNavController().navigate(R.id.action_loggedIn_to_register_Fragment)
+            }
+            else{
+                Toast.makeText(requireContext(), "Fill out all the fields please", Toast.LENGTH_LONG).show()
+            }
         }
+
        // textfield.setText(data)
         binding.homeButton.setOnClickListener{
             findNavController().navigate(R.id.action_loggedIn_to_register_Fragment)

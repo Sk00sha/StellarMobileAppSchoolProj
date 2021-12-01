@@ -55,7 +55,25 @@ class RegisterStellar {
 
     fun add_existing_account(secret_seed:String):List<String>{
         val account_id=KeyPair.fromSecretSeed(secret_seed)
-        val return_list = listOf<String>(account_id.accountId,secret_seed)
+        var return_list= emptyList<String>();
+        val thread = Thread {
+            try {
+                val server = Server("https://horizon-testnet.stellar.org")
+                val account = server.accounts().account(account_id.accountId)
+                var balance_return=""
+                println("Balances for account " + account_id)
+                for (balance in account.balances) {
+                    println("Type:"+balance.assetType+"Code:"+balance.assetCode+" Balance:"+balance.balance)
+                    balance_return=balance.balance
+                    return_list = listOf<String>(account_id.accountId,secret_seed,balance_return)
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        thread.start()
+        thread.join()
         return return_list
     }
     //DAT PREC

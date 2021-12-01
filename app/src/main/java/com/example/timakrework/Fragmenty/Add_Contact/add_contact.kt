@@ -31,11 +31,16 @@ class add_contact : Fragment() {
         val binding=DataBindingUtil.inflate<FragmentAddContactBinding>(inflater, R.layout.fragment_add_contact, container, false);
         val view= binding.getRoot()
         binding.addContactToDb.setOnClickListener {
-            val user_stellar_id=binding.CONTACTID.text.toString()
-            println("Added User"+user_stellar_id)
-            mUserViewModel.addContact(Contacts(0,user_stellar_id))
-            Toast.makeText(requireContext(),"Added new contact",Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.action_add_contact_to_register_Fragment)
+                if(!binding.CONTACTID.text.toString().isEmpty()) {
+                    val user_stellar_id = binding.CONTACTID.text.toString()
+                    println("Added User" + user_stellar_id)
+                    mUserViewModel.addContact(Contacts(0, user_stellar_id))
+                    Toast.makeText(requireContext(), "Added new contact", Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_add_contact_to_register_Fragment)
+                }
+            else{
+                    Toast.makeText(requireContext(), "Add contacts account id please", Toast.LENGTH_LONG).show()
+                }
         }
         binding.homeButton.setOnClickListener{
             findNavController().navigate(R.id.action_add_contact_to_register_Fragment)

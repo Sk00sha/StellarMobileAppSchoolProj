@@ -32,18 +32,21 @@ class Register : Fragment() {
         val StellarClass= RegisterStellar()
         val encryptor=Encryptor()
         mUserViewModel= ViewModelProvider(this).get(ViewModel::class.java)
-
         binding.button.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_register_Fragment)
-            val data=StellarClass.register_stellar()
+            if(!binding.pin.text.toString().isEmpty() && binding.pin.text.toString().length>=4) {
+                println(binding.pin.text.toString().length)
+                findNavController().navigate(R.id.action_loginFragment_to_register_Fragment)
+                val data=StellarClass.register_stellar()
+                val pin = binding.pin.text.toString()
+                val hash = encryptor.toMD5(pin) //zahashujeme nas pin
+                val encrypt = encryptor.encrypt(data.get(1), hash) //encrypt nas pin
 
-            val pin = binding.pin.text.toString()
-            val hash = encryptor.toMD5(pin) //zahashujeme nas pin
-            val encrypt = encryptor.encrypt(data.get(1),hash) //encryp nas pin
-
-            mUserViewModel.addUser(User(0,data.get(0),encrypt.toString(),data.get(2)))
-            Toast.makeText(requireContext(),"Account created", Toast.LENGTH_LONG).show()
-
+        mUserViewModel.addUser(User(0, data.get(0), encrypt.toString(), data.get(2)))
+        Toast.makeText(requireContext(), "Account created", Toast.LENGTH_LONG).show()
+    }
+            else{
+            Toast.makeText(requireContext(), "Please inser pin w. length>=4", Toast.LENGTH_LONG).show()
+        }
             }
         binding.floatingListAccounts.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_accounts_Fragment)
