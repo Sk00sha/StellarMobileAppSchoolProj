@@ -34,15 +34,16 @@ class Register : Fragment() {
         mUserViewModel= ViewModelProvider(this).get(ViewModel::class.java)
 
         binding.button.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_register_Fragment)
             val data=StellarClass.register_stellar()
+
             val pin = binding.pin.text.toString()
-
             val hash = encryptor.toMD5(pin) //zahashujeme nas pin
+            val encrypt = encryptor.encrypt(data.get(1),hash) //encryp nas pin
 
-            val encrypt = encryptor.encrypt(data.get(1),hash) //encryptime nas pin
             mUserViewModel.addUser(User(0,data.get(0),encrypt.toString(),data.get(2)))
             Toast.makeText(requireContext(),"Account created", Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.action_loginFragment_to_register_Fragment)
+
             }
         binding.floatingListAccounts.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_accounts_Fragment)

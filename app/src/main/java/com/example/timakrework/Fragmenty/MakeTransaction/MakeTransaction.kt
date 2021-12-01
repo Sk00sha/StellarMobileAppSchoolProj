@@ -51,7 +51,12 @@ class MakeTransaction : Fragment() {
             val stellar_controller=RegisterStellar()
             val pin=binding.pinInput.text.toString()
             val amount=binding.getAmount.text.toString()
-            val stellar_balance=stellar_controller.check_balance_stellar(binding.spinnerFrom.selectedItem.toString())
+
+            var stellar_balance=""
+            if(binding.spinnerTo.selectedItem!==null && binding.spinnerFrom.selectedItem!==null){
+                println(binding.spinnerTo.selectedItem!==null)
+                 stellar_balance=stellar_controller.check_balance_stellar(binding.spinnerFrom.selectedItem.toString())
+            }
             if(!pin.isEmpty() && binding.pinInput!=null  && binding.getAmount!=null && !amount.isEmpty() && stellar_balance.toFloat()>=amount.toFloat()){
                 //mUserViewModel.makeTransaction(pin,binding.spinnerFrom.selectedItem.toString(),binding.spinnerTo.selectedItem.toString(),amount)
                 mUserViewModel.readAllUsers.observe(viewLifecycleOwner, Observer {
@@ -75,7 +80,10 @@ class MakeTransaction : Fragment() {
                 //Toast.makeText(requireContext(),"Redirecting to transactions",Toast.LENGTH_LONG).show()
                 //findNavController().navigate(R.id.action_makeTransaction_to_transaction_history)
             }
-            if(amount.isEmpty() || pin.isEmpty()){
+            if(binding.spinnerTo.selectedItem==null || binding.spinnerFrom.selectedItem==null){
+                Toast.makeText(requireContext(),"Please enter reciever and sender info",Toast.LENGTH_LONG).show()
+            }
+            else if(amount.isEmpty() || pin.isEmpty()){
                 Toast.makeText(requireContext(),"Enter desired amount and pin please",Toast.LENGTH_LONG).show()
             }
             else if(stellar_balance.toFloat()<amount.toFloat()){
